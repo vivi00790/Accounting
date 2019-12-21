@@ -11,6 +11,9 @@ namespace Accounting
         
         public decimal QueryBudget(DateTime startDate, DateTime endDate)
         {
+            if (startDate > endDate)
+                return 0;
+
             var budget = 0m;
             if (startDate.Year == endDate.Year)
             {

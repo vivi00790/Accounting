@@ -51,5 +51,23 @@ namespace Accounting
             var actual = _accounting.QueryBudget(startDate, endDate);
             Assert.AreEqual(34100, actual);
         }
+
+        [Test]
+        public void test_Invalid_Input()
+        {
+            var startDate = DateTime.Parse("2019/12/31");
+            var endDate = DateTime.Parse("2019/12/01");
+            var actual = _accounting.QueryBudget(startDate, endDate);
+            Assert.AreEqual(0, actual);
+        }
+
+        [Test]
+        public void test_Same_day()
+        {
+            var startDate = DateTime.Parse("2019/12/01");
+            var endDate = DateTime.Parse("2019/12/01");
+            var actual = _accounting.QueryBudget(startDate, endDate);
+            Assert.AreEqual(100, actual);
+        }
     }
 }
