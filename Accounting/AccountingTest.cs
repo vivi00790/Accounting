@@ -26,6 +26,14 @@ namespace Accounting
 
             Assert.AreEqual(3100, actual);
         }
-        
+
+        [Test]
+        public void test_PartialMonth()
+        {
+            var startDate = DateTime.Parse("2019/12/01");
+            var endDate = DateTime.Parse("2019/12/10");
+            var actual = _accounting.QueryBudget(startDate, endDate);
+            Assert.AreEqual(1000,actual);
+        }
     }
 }

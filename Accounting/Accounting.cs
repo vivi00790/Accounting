@@ -10,9 +10,20 @@ namespace Accounting
         
         public decimal QueryBudget(DateTime startDate, DateTime endDate)
         {
-            var budget = Repo.GetAll().First(model => model.YearMonth == startDate.ToString("yyyyMM"));
+            if (startDate.Year == endDate.Year)
+            {
+                if (startDate.Month  == endDate.Month)
+                {
+                    var days = endDate.Subtract(startDate).Days+1;
 
-            return budget.Amount;
+                    var daysInMonth = DateTime.DaysInMonth(startDate.Year,startDate.Month);
+
+                    var budget = Repo.GetAll().First(model => model.YearMonth == startDate.ToString("yyyyMM"));
+                    return  (decimal)budget.Amount / daysInMonth * days;
+                }
+            }
+
+            return 0;
         }
 
         public IBudgetRepo Repo { get; set; }
