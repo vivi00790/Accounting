@@ -23,11 +23,11 @@ namespace Accounting
             dec11.YearMonth = "201912";
             list.Add(dec11);
 
-            var dec12 = new Budget();
+            var dec01 = new Budget();
 
-            dec12.Amount = 31000;
-            dec12.YearMonth = "202001";
-            list.Add(dec12);
+            dec01.Amount = 31000;
+            dec01.YearMonth = "202001";
+            list.Add(dec01);
 
             var dec202012 = new Budget();
 

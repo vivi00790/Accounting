@@ -57,13 +57,16 @@ namespace Accounting
 
         private decimal BudgetOfMonth(DateTime startDate, int days)
         {
-            
+
 
             var daysInMonth = DateTime.DaysInMonth(startDate.Year, startDate.Month);
 
-            var budget = Repo.GetAll().First(model => model.YearMonth == startDate.ToString("yyyyMM"));
-            return (decimal) budget.Amount / daysInMonth * days;
+            var budget = Repo.GetAll().FirstOrDefault(model => model.YearMonth == startDate.ToString("yyyyMM"));
+            if (budget != null) return (decimal)budget.Amount / daysInMonth * days;
+            return 0;
         }
+
+
 
         public IBudgetRepo Repo { get; set; }
     }
