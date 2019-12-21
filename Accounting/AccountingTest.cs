@@ -43,5 +43,13 @@ namespace Accounting
             var actual = _accounting.QueryBudget(startDate, endDate);
             Assert.AreEqual(110,actual);
         }
+        [Test]
+        public void test_Cross_Years()
+        {
+            var startDate = DateTime.Parse("2019/12/01");
+            var endDate = DateTime.Parse("2020/01/31");
+            var actual = _accounting.QueryBudget(startDate, endDate);
+            Assert.AreEqual(34100, actual);
+        }
     }
 }
